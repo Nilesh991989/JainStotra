@@ -9,6 +9,16 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:adSize="BANNER"
+        app:adUnitId="@string/banner_ad_unit_id"
+    />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

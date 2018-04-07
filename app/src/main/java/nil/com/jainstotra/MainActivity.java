@@ -11,12 +11,17 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer tumseLagiLaganMedia;
     private MediaPlayer namokarMedia;
     private MediaPlayer darshanPathMedia;
     private MediaPlayer currentRunningMedia;
     private Boolean exit = false;
+    private AdView adView;
 
     BroadcastReceiver phonestatereceiver = new BroadcastReceiver() {
         @Override
@@ -68,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
         tumseLagiLaganMedia = MediaPlayer.create(MainActivity.this,R.raw.tum_se_lagi_lagan);
         darshanPathMedia = MediaPlayer.create(MainActivity.this,R.raw.darshanam_devasya);
         runNamokarMantra(null);
+        MobileAds.initialize(this, "ca-app-pub-2818463437207396/2619292976");
+        adView = findViewById(R.id.ad_view);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        adView.loadAd(adRequest);
     }
 
     public  void runNamokarMantra(View view){
@@ -113,6 +124,31 @@ public class MainActivity extends AppCompatActivity {
         }else if(darshanPathMedia.isPlaying() && !mantra.equals("darshanpath")){
             darshanPathMedia.stop();
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
+
+    /** Called when returning to the activity */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 
     @Override
