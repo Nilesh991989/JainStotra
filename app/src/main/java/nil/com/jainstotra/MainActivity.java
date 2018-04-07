@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         tumseLagiLaganMedia = MediaPlayer.create(MainActivity.this,R.raw.tum_se_lagi_lagan);
         darshanPathMedia = MediaPlayer.create(MainActivity.this,R.raw.darshanam_devasya);
         runNamokarMantra(null);
-        MobileAds.initialize(this, "ca-app-pub-2818463437207396/2619292976");
+        MobileAds.initialize(this, "ca-app-pub-2818463437207396~2033448542");
         adView = findViewById(R.id.ad_view);
 
         AdRequest adRequest = new AdRequest.Builder()
